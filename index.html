@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Painel 1–150 (Reserva e Trava)</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>Reserva de Números — 1 a 150</h1>
+    <div class="actions">
+      <button id="exportar">Exportar JSON</button>
+      <button id="importar">Importar JSON</button>
+      <button id="resetar" class="danger">Resetar TUDO</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="form-card">
+      <h2>Adicionar pessoa a um número</h2>
+      <form id="formReserva" autocomplete="off">
+        <label for="numero">Número</label>
+        <input id="numero" name="numero" type="number" min="1" max="150" required placeholder="1–150" />
+
+        <label for="nome">Nome</label>
+        <input id="nome" name="nome" type="text" maxlength="80" required placeholder="Nome completo" />
+
+        <button type="submit">Reservar e Travar</button>
+        <p class="hint">Depois de salvo, não dá para alterar esse número.</p>
+        <p id="msg" class="msg" aria-live="polite"></p>
+      </form>
+
+      <div class="filters">
+        <input id="busca" type="text" placeholder="Buscar por nome ou número..." />
+        <label class="only-livres">
+          <input id="apenasLivres" type="checkbox" />
+          Mostrar apenas livres
+        </label>
+        <button id="limparFiltros" class="ghost">Limpar filtros</button>
+      </div>
+    </section>
+
+    <section class="grid-card">
+      <div class="legend">
+        <span class="dot livre"></span> Livre
+        <span class="dot ocupado"></span> Ocupado
+      </div>
+      <div id="grade" class="grid"></div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <small>Estado salvo localmente no dispositivo. Para travar “de verdade” (contra terceiros), use backend/BD.</small>
+  </footer>
+
+  <input id="fileInput" type="file" accept="application/json" hidden />
+  <script src="app.js"></script>
+</body>
+</html>
